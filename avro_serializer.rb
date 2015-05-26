@@ -43,4 +43,8 @@ class AvroSerializer
     dr = Avro::DataFile::Reader.new(file, Avro::IO::DatumReader.new)
     dr.each(&block)
   end
+
+  def to_s
+    'Avro'
+  end
 end

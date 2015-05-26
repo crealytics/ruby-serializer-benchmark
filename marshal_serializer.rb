@@ -16,4 +16,7 @@ class MarshalSerializer
     Marshal.load(File.read(@filename)).each(&block)
   end
 
+  def to_s
+    'Marshal'
+  end
 end

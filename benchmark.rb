@@ -41,18 +41,20 @@ data = unless File.exists?(cache)
          Marshal.load(File.read(cache))
        end
 
-sers = [AvroSerializer.new, MarshalSerializer.new, CsvSerializer.new]
+puts "number of records: #{data.size}"
 
-Benchmark.bm(20) do |x|
+sers = [AvroSerializer.new, MarshalSerializer.new, CsvSerializer.new('CSV(converters)', converters: :all), CsvSerializer.new('CSV(no-converters)')]
+
+Benchmark.bm(30) do |x|
   sers.each do |ser|
-    x.report("#{ser.class}#write") do
+    x.report("#{ser}#write") do
       ser.write do |out|
         data.each do |row|
           out << row
         end
       end
     end
-    x.report("#{ser.class}#read") do
+    x.report("#{ser}#read") do
       count = 0
       ser.read do |row|
         count += 1
