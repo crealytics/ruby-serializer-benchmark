@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+gem 'avro'
+gem 'byebug'
+gem 'sequel'
+gem 'pg'
+gem 'sequel_pg'
+gem 'activesupport'
