@@ -4,6 +4,7 @@ require 'benchmark'
 require_relative 'avro_serializer'
 require_relative 'marshal_serializer'
 require_relative 'csv_serializer'
+require_relative 'smarter_csv_deserializer'
 require 'active_support/core_ext/hash/indifferent_access'
 
 cache = 'tmp/dataset.dump'
@@ -43,7 +44,7 @@ data = unless File.exists?(cache)
 
 puts "number of records: #{data.size}"
 
-sers = [AvroSerializer.new, MarshalSerializer.new, CsvSerializer.new('CSV(converters)', converters: :all), CsvSerializer.new('CSV(no-converters)')]
+sers = [AvroSerializer.new, MarshalSerializer.new, CsvSerializer.new('CSV(converters)', converters: :all), CsvSerializer.new('CSV(no-converters)'), SmarterCsvDeserializer.new("SmarterCSV", quote_char: '"', remove_zero_values: false, remove_empty_values: false, downcase_header: false, strings_as_keys: true)]
 
 Benchmark.bm(30) do |x|
   sers.each do |ser|

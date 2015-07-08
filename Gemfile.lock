@@ -21,6 +21,7 @@ GEM
     sequel_pg (1.6.11)
       pg (>= 0.8.0)
       sequel (>= 3.39.0)
+    smarter_csv (1.0.19)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -35,3 +36,4 @@ DEPENDENCIES
   pg
   sequel
   sequel_pg
+  smarter_csv
