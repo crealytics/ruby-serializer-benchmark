@@ -14,6 +14,8 @@ data = unless File.exists?(cache)
          @db = Sequel.connect(ENV['DB_URI'])
          data = @db.fetch(<<-SQL).to_a.map(&:with_indifferent_access).each { |h| h['costs'] = h['costs'].to_f }
             SELECT
+            keyword_id,
+            adgroup_id,
             keyword_sk,
             date_sk,
             account_sk,

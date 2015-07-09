@@ -4,6 +4,8 @@ AVRO_SCHEMA = <<-JSON
 { "type": "record",
   "name": "Row",
   "fields" : [
+    {"name": "keyword_id", "type": "long"},
+    {"name": "adgroup_id", "type": "long"},
     {"name": "keyword_sk", "type": "long"},
     {"name": "date_sk", "type": "long"},
     {"name": "account_sk", "type": "long"},
